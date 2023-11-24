@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            width: 70%;
+            display: grid;
+            margin: auto;
+            grid-template-columns: repeat(3, 1fr);
+            text-align: center;
+            gap: 20px;
+        }
+
+        #container div {
+            border: 2px solid greenyellow;
+        }
+
+        h1 {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="./inCart.html">CART PAGE</a>
+    <select id="filter">
+        <option value=""> Select </option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+        <option value="4">Four</option>
+        <option value="5">Five</option>
+        <option value="6">Six</option>
+        <option value="7">Seven</option>
+        <option value="8">Eight</option>
+        <option value="9">Nine</option>
+        <option value="10">Ten</option>
+    </select>
+    <div id="container"></div>
+</body>
+<script>
+    let Api = "https://jsonplaceholder.typicode.com/albums";
+
+    let cont = document.getElementById("container");
+    let filter = document.getElementById("filter");
+    let filterData;
+
+    let result = fetch(Api)
+    result.then((res) => {
+        return res.json();
+    })
+        .then((data) => {
+            // console.log(data);
+            filterData = data;
+            display(data)
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+
+    // filter part is here ------>>>
+    filter.addEventListener("change", function () {
+        if (filter.value === "") {
+            display(filterData);
+        } else {
+
+            let filtered = filterData.filter(function (ele) {
+                if (ele.userId == filter.value) {
+                    return ele;
+                }
+            })
+            display(filtered);
+        }
+    })
+
+
+    function display(data) {
+        cont.innerHTML = "";
+        data.forEach(element => {
+            const card = document.createElement("div");
+
+            // creating the sepreate id's for each div--->>>
+            // const cardId= "card_"+element.id;
+            // card.id= cardId;
+
+
+            // here i am giving the different backgroundColor for every odd num div --->
+            if (element.id % 2 === 1) {
+                card.style.backgroundColor = "greenyellow";
+            }
+
+
+            const Id = document.createElement("h1");
+            const Title = document.createElement("h3");
+            const UserId = document.createElement("h3");
+            const Button = document.createElement("button");
+
+            Id.innerText = element.id;
+            Title.innerText = element.title;
+            UserId.innerText = element.userId;
+            Button.innerText = "add to cart";
+            Button.addEventListener("click", function () {
+
+                let LS = localStorage.getItem("Product");
+                if (LS === null) {
+                    LS = [];
+                } else {
+                    LS = JSON.parse(LS);
+                }
+
+
+                // here with the help of "some HOF" i am checking whether if the item already is in the local storage or not 
+                const isIncart = LS.some(function (item) {
+                    return item.id === element.id;
+                })
+                if (isIncart) {
+                    alert("This item is already in the cart.")
+                } else {
+                    LS.push(element);
+                }
+
+                localStorage.setItem("Product", JSON.stringify(LS));
+
+            })
+
+
+
+            card.append(Id, Title, UserId, Button);
+            cont.append(card)
+        });
+    }
+
+
+</script>
+
+</html>

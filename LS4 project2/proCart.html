@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            width: 80%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            text-align: center;
+        }
+
+        img {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Masai E-Commerce</h1>
+    <a href="./pro.html">Home</a>
+    <div id="container"></div>
+
+
+</body>
+<script>
+    let container = document.getElementById("container");
+    let LS = JSON.parse(localStorage.getItem("cart"));
+
+    if (LS === null) {
+        LS = [];
+    } else {
+        LS = LS;
+    }
+
+    function Display(data) {
+
+        for (let i = 0; i < data.length; i++) {
+
+            let item = document.createElement("div");
+
+            let itemImg = document.createElement("img");
+            itemImg.src = data[i].img;
+
+            let itemBrand = document.createElement("h2");
+            itemBrand.innerText = data[i].brand;
+
+            let itemName = document.createElement("p");
+            itemName.innerText = data[i].name;
+
+            let itemPrice = document.createElement("p");
+            itemPrice.innerText = data[i].price;
+
+            let buyBtn = document.createElement("button");
+            buyBtn.innerText = "Buy";
+
+            let deleteItem = document.createElement("button");
+            deleteItem.innerText = "remove from cart";
+            deleteItem.style.backgroundColor = "red";
+
+            deleteItem.addEventListener("click", function () {
+                LS = LS.filter(function (element, index) {
+                    if (i !== index) {
+                        return element;
+                    }
+                })
+                localStorage.setItem("cart", JSON.stringify(LS));
+                container.innerHTML = ""; // Clear the container
+                Display(LS);
+
+            })
+
+
+            item.append(itemImg, itemBrand, itemName, itemPrice, buyBtn, deleteItem);
+
+            container.append(item);
+        }
+    }
+    Display(LS)
+
+
+</script>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>How to return a promise?</h1>
+</body>
+<script>
+
+    let coin = true;
+    let candy = true;
+
+    let myPromise = new Promise((resolve, reject) => {
+
+        setTimeout(function () {
+            if (coin === true) {
+                resolve();
+            } else {
+                reject();
+            }
+        }, 1000)
+    })
+
+    myPromise.then(function (res) {
+        let secondPromise = new Promise((resolve, reject) => {
+            setTimeout(function () {
+                if (candy === true) {
+                    resolve();
+                } else {
+                    reject();
+                }
+            }, 1000)
+        })
+        return secondPromise;
+    })
+        .then(function () {
+            console.log("Can buy candy");
+        }).catch(function () {
+            console.log("No candy");
+        })
+
+
+</script>
+
+</html>

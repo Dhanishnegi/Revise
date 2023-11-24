@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width: 30%;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    
+        
+    </div>
+    <button id="back"> < </button>
+    <button id="forward"> > </button>
+
+</body>
+</html>
+
+<script>
+    let head= document.querySelector(".container");
+   
+    let forward= document.getElementById("forward");
+    let back= document.getElementById("back");
+    let Image= document.createElement("img");
+    
+
+    let imageArr= [
+    "./img/4880763.jpg","./img/817823.jpg","./img/Brian-Tracy-Quotes-3.webp","./img/deer-moon-surreal-forest-monochrome-5k-8k-7680x5126-9101.jpg","./img/diablo-iv-lilith-diablo-4-2022-games-3840x2160-5969.png","./img/island-sunny-day-daylight-blue-sky-house-lone-tree-5120x2880-7842.png","./img/god-of-war-ragnarok-kratos-dark-background-3840x2160-9097.png"
+    ]
+
+    let current=0;
+    Image.setAttribute("src", imageArr[current]);
+
+    forward.addEventListener("click", function(){
+    
+            current++;
+            if(current>=imageArr.length){
+                current=0;
+            }
+            Image.setAttribute("src", imageArr[current]);
+        
+    })
+
+    back.addEventListener("click", function(){
+        current--;
+        if(current<0){
+            current=imageArr.length-1;
+        }
+        Image.setAttribute("src", imageArr[current]);
+    })
+    head.append(Image)
+
+   
+
+   
+
+</script>

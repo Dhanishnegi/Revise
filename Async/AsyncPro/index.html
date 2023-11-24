@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            height: 800px;
+            width: 80%;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+</body>
+<script>
+    let cont= document.getElementById("container");
+    let box= document.createElement("div")
+    let image= document.createElement("img");
+    box.append(image);
+    cont.append(box);
+    
+
+    let Pics= [
+        "https://media.tenor.com/ZseF5Ruyd_UAAAAM/cargando-loading.gif",
+        "https://cdn.pixabay.com/photo/2014/07/04/13/41/auto-383897_640.jpg",
+        "https://cdn.pixabay.com/photo/2019/10/01/10/07/nissan-4517765_640.jpg",
+        "https://cdn.pixabay.com/photo/2019/06/17/23/05/volkswagen-beetle-4281109_640.jpg",
+        "https://cdn.pixabay.com/photo/2022/05/20/18/35/isetta-7210039_640.jpg",
+        "https://cdn.pixabay.com/photo/2013/10/30/14/13/car-to-go-203020_640.jpg",
+        "https://cdn.pixabay.com/photo/2013/09/27/17/10/auto-187144_640.jpg"
+    ]
+
+    
+    let currentInd=0;
+    image.src= Pics[currentInd];
+    
+
+    
+    setTimeout(function(){
+
+        setInterval(function(){
+
+        
+        ++currentInd;
+        image.src= Pics[currentInd]; 
+
+// currentIndex = (currentIndex + 1) % Pics.length;
+        if(currentInd=== Pics.length-1){
+        currentInd=0;
+        }
+
+        },1000);
+
+    },5000);
+    
+</script>
+</html>

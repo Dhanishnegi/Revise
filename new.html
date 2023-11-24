@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+  const apiUrl = 'https://demo.accu360.co.in/api/resource/Sales Invoice';
+  const apiKey = 'b20b99aa5f63a67';
+  const apiSecret = '18ebaaf603c2e8d';
+  const apiToken = `${apiKey}:${apiSecret}`;
+  const headers = {
+    Authorization: `token ${apiToken}`,
+  };
+  const url = new URL(`${apiUrl}`);
+
+  // Fetch data from the API
+  fetch(url, { method: 'GET', headers })
+    .then(response => {
+      if (response.status === 200) {
+        return response.json();
+      } else {
+        throw new Error(`Request failed with status ${response.status}`);
+      }
+    })
+    .then(data => {
+      console.log('Data from API:', data);
+      
+    })
+    .catch(error => {
+      console.log('Error:', error);
+    });
+</script>
+</html>

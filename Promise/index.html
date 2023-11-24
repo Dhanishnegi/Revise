@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    let coin= true;
+    let myPromise= new Promise((resolve, reject) => {
+        
+        setTimeout(function(){
+            if(coin){
+                resolve();
+            }else{
+                reject();
+            }
+        },5000);
+    });
+
+    myPromise.then(function(){
+        console.log("i can buy");
+    }).catch(function(){
+        console.log("no i can't");
+    });
+
+    console.log(myPromise);
+</script>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- here we can see how we can use promise inside another promise  -->
+</body>
+</html>
+<script>
+    let coin= true;
+    let cookies= false;
+    let myPromise= new Promise((resolve, reject) => {
+        
+        setTimeout(function(){
+            if(coin){
+                resolve("Yes");
+            }else{
+                reject("No");
+            }
+        },2000);
+    });
+
+    myPromise.then(function(e){
+        // here i am checking if cookies are there or not if cookies are there then i can buy 
+       
+        const store_result= new Promise((resolve, reject) => {
+            
+            setTimeout(function(){
+                if(cookies){
+                    resolve("you can buy cookies");
+                }else{
+                    reject("No cookies left");
+                }
+            },2000);
+        })
+        return store_result;
+
+    }).then(function(e){
+        console.log(e);
+    })
+    
+    .catch(function(e){
+        console.log(e);
+    });
+
+    console.log(myPromise);
+</script>

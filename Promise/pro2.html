@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>Problem- Write a function named waitPromise that accepts time in ms and returns a promise. The promise should get
+        resolved after given time.</p>
+    <button id="btn">Promise</button>
+</body>
+<script>
+
+    let Button = document.getElementById("btn");
+
+    function waitPromise(timeInMs) {
+        return new Promise((resolve, reject) => {
+            setTimeout(function () {
+                resolve(`Promise resolved after ${timeInMs} milliseconds`);
+            }, timeInMs);
+        });
+    }
+
+
+
+    Button.addEventListener("click", function () {
+
+        let waitingTime = 2000;
+
+        waitPromise(waitingTime)
+            .then(function (res) {
+                console.log(res);
+            })
+            .catch(function (err) {
+                console.log(err);
+            })
+    })
+</script>
+
+</html>

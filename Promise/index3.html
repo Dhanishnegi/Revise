@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #contenior {
+            display: flex;
+            justify-content: center;
+        }
+
+        #box {
+            margin: auto;
+            width: 80%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        #box img {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="contenior">
+        <img src="https://cdn.pixabay.com/animation/2023/08/11/21/18/21-18-05-265_512.gif" alt="" id="contImg">
+    </div>
+    <div id="box"></div>
+</body>
+<script>
+    const PRODUCT_DATA = [
+        {
+            brand: "Puma",
+            name: "selena floral FileList",
+            price: "2000",
+            size: "X,XX,XXL",
+            productID: "women",
+            img: "https://cdn.pixabay.com/photo/2016/03/08/20/03/flag-1244649_640.jpg",
+        },
+        {
+            brand: "Nike",
+            name: "selena floral",
+            price: "3000",
+            size: "X,XX,XXL",
+            productID: "women",
+            img: "https://cdn.pixabay.com/photo/2018/04/26/12/14/travel-3351825_640.jpg",
+        },
+        {
+            brand: "Reboke",
+            name: "selena l",
+            price: "1500",
+            size: "X,XX,XXL",
+            productID: "women",
+            img: "https://cdn.pixabay.com/photo/2016/03/08/20/03/flag-1244648_640.jpg",
+        },
+        {
+            brand: "Puma",
+            name: "selena floral File",
+            price: "700",
+            size: "X,XX,XXL",
+            productID: "women",
+            img: "https://cdn.pixabay.com/photo/2016/03/08/20/03/flag-1244649_640.jpg",
+        },
+        {
+            brand: "Nike",
+            name: "selena flora",
+            price: "1700",
+            size: "X,XX,XXL",
+            productID: "women",
+            img: "https://cdn.pixabay.com/photo/2018/04/26/12/14/travel-3351825_640.jpg",
+        },
+        {
+            brand: "Reboke",
+            name: "selen l",
+            price: "1000",
+            size: "X,XX,XXL",
+            productID: "women",
+            img: "https://cdn.pixabay.com/photo/2016/03/08/20/03/flag-1244648_640.jpg",
+        },
+        {
+            brand: "Puma",
+            name: "selena floral ",
+            price: "2300",
+            size: "X,XX,XXL",
+            productID: "women",
+            img: "https://cdn.pixabay.com/photo/2016/03/08/20/03/flag-1244649_640.jpg",
+        },
+        {
+            brand: "Nike",
+            name: "selena ",
+            price: "3000",
+            size: "X,XX,XXL",
+            productID: "women",
+            img: "https://cdn.pixabay.com/photo/2018/04/26/12/14/travel-3351825_640.jpg",
+        },
+        {
+            brand: "Reboke",
+            name: "selena ",
+            price: "1200",
+            size: "X,XX,XXL",
+            productID: "women",
+            img: "https://cdn.pixabay.com/photo/2016/03/08/20/03/flag-1244648_640.jpg",
+        },
+        {
+            brand: "Puma",
+            name: "selena  FileList",
+            price: "1999",
+            size: "X,XX,XXL",
+            productID: "women",
+            img: "https://cdn.pixabay.com/photo/2016/03/08/20/03/flag-1244649_640.jpg",
+        },
+        {
+            brand: "Nike",
+            name: "sele floral",
+            price: "3000",
+            size: "X,XX,XXL",
+            productID: "women",
+            img: "https://cdn.pixabay.com/photo/2018/04/26/12/14/travel-3351825_640.jpg",
+        },
+        {
+            brand: "Reboke",
+            name: "sena l",
+            price: "2500",
+            size: "X,XX,XXL",
+            productID: "women",
+            img: "https://cdn.pixabay.com/photo/2016/03/08/20/03/flag-1244648_640.jpg",
+        },
+    ]
+
+    let cont = document.getElementById("contenior");
+    let contImage = document.getElementById("contImg");
+    let Box = document.getElementById("box");
+
+    let myPromise = new Promise((resolve, reject) => {
+
+        setTimeout(function () {
+
+            if (PRODUCT_DATA != null) {
+                resolve(PRODUCT_DATA);
+            } else {
+                reject("Error: Data not found");
+            }
+
+        }, 2000);
+    })
+
+    myPromise.then(function (res) {
+        contImage.src = "https://thumbs.dreamstime.com/b/wow-look-down-intrigued-brunette-girl-short-hairstyle-pointing-fingers-below-showing-sale-advertisement-wow-look-down-225786579.jpg?w=768";
+        display(res);
+
+    }).catch(function (err) {
+        alert(err);
+    })
+
+    function display(data) {
+        for (let i = 0; i < data.length; i++) {
+
+            let items = document.createElement("div");
+
+            let Image = document.createElement("img");
+            Image.src = data[i].img;
+
+            let Name = document.createElement("p");
+            Name.innerText = data[i].name;
+
+            items.append(Image, Name);
+
+            Box.append(items);
+        }
+    }
+</script>
+
+</html>

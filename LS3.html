@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width: 20%;
+        }
+        #container{
+            width: 50%;
+            height:700px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+           /* align-items: center; */
+        }
+        img{
+            width: 100%;
+        }
+        #box{
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+        #likeCnt{
+            color: rgb(38, 174, 38);
+        }
+        #dislikeCnt{
+            color: red;
+        }
+        #btndiv{
+            display: flex;
+           justify-content: space-around;
+        }
+        #like{
+            font-size: 2rem;
+            background-color: rgb(38, 174, 38);
+            border-radius:10px;
+            border-style: none;
+            width: 120px;
+        }
+        #dislike{
+            font-size: 2rem;
+            background-color: red;
+            border-radius: 10px;
+            border-style: none;
+            width: 120px;
+        }
+            
+        
+    </style>
+</head>
+<body>
+    <div id="container">
+
+        <img src="./img/4880763.jpg" alt="" id="image">
+        <div id="box">
+            <div>
+                <h1 id="likeCnt">0</h1>
+                <p>Total Likes</p>
+            </div>
+
+            <div>
+                <h1 id="dislikeCnt">0</h1>
+                <p>Total Dislikes</p>
+            </div>
+        </div>
+
+        <div id="btndiv">
+            <button id="like">Like</button>
+            <button id="dislike">Dislike</button>
+        </div>
+
+    </div>
+</body>
+</html>
+<script>
+    // var Image= document.getElementById("image");
+    var LikesCntdis= document.getElementById("likeCnt");
+    var DislikeCntdis= document.getElementById("dislikeCnt");
+    var likeBtn= document.getElementById("like");
+    var dislikeBtn= document.getElementById("dislike");
+
+    // for like counts-------->>>>
+    let likecount=localStorage.getItem("Lcount");
+    if (likecount===null){
+        likecount=0;
+    }else{
+        likecount = Number(likecount);
+    }
+
+    LikesCntdis.innerText= likecount;
+        
+    likeBtn.addEventListener("click", function(){
+        ++likecount;
+        LikesCntdis.innerText= likecount;
+        localStorage.setItem("Lcount", likecount);
+        
+    })
+    
+
+
+    // for dislike counts -------->>>>>
+    let dislikecount= localStorage.getItem("Dcount");
+    if(dislikecount===null){
+        dislikecount=0;
+    }else{
+        dislikecount= Number(dislikecount);
+    }
+
+    DislikeCntdis.innerText= dislikecount;
+
+    dislikeBtn.addEventListener("click", function(){
+        ++dislikecount;
+        DislikeCntdis.innerText= dislikecount;
+        localStorage.setItem("Dcount", dislikecount);
+    })
+
+</script>

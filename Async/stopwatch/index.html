@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            width: 100%;
+            height: 800px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #watch{
+            width: 350px;
+            height: 350px;
+            display: flex;
+            border-radius: 50%;
+            background-color: rgb(47, 120, 120);
+            border: 2px solid black;
+            justify-content: space-evenly;
+            text-align: center;
+            align-items: center;
+        }
+        #watch div{
+            width: 25%;
+            /* border: 1px solid red; */
+            font-size: 22px;
+        }
+        #start{
+            background-color: greenyellow;
+            font-size: 20px;
+            border: none;
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+            
+        }
+        #stop{
+            background-color: rgb(226, 83, 83);
+            font-size: 20px;
+            border: none;
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        }
+        #reset{
+            background-color: yellow;
+            font-size: 20px;
+            border: none;
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        }
+    </style>
+    
+</head>
+<body>
+    <div id="container">
+
+        <div id="watch">
+
+            <div id="hour">
+                <h1 id="hou">0</h1>
+                <p>Hour</p>
+                <button id="start">Start</button>
+            </div>
+        
+            <div id="minute">
+                <h1 id="min">0</h1>
+                <p>Minute</p>
+                <button id="stop">Stop</button>
+            </div>
+        
+            <div id="second">
+                <h1 id="sec">0</h1>
+                <p>second</p>
+                <button id="reset">Reset</button>
+            </div>
+        </div>
+    </div>
+    
+    
+
+</body>
+<script>
+    let HourP= document.getElementById("hou");
+    let MinP= document.getElementById("min");
+    let SecP= document.getElementById("sec");
+
+    let Start= document.getElementById("start");
+    let Stop= document.getElementById("stop");
+    let Reset= document.getElementById("reset");
+    
+    let Hcount= 0;
+    let Mcount=0;
+    let Scount=0;
+    let id;
+
+    Start.addEventListener("click", ()=>{
+
+        id= setInterval(function(){
+            if(Scount==60){
+                Mcount +=1;
+                Scount=0;
+            if(Mcount==60){
+                Hcount +=1;
+                Mcount=0;
+                HourP.innerText= Hcount;
+            }
+            MinP.innerText= Mcount;
+        }
+        SecP.innerText= ++Scount;
+        },1000);
+    })
+
+    Stop.addEventListener("click", ()=>{
+        clearInterval(id);
+    })
+
+    Reset.addEventListener("click", ()=>{
+        Hcount=0;
+        Mcount=0;
+        Scount=0;
+
+        HourP.innerText=0;
+        MinP.innerText=0;
+        SecP.innerText=0;
+    })
+    
+</script>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="Name" id="Name">
+    <input type="text" placeholder="fatherName" id="father">
+    <button id="btn">submit</button>
+</body>
+</html>
+<script>
+    var nameIn= document.getElementById("Name");
+    var fatherIn= document.getElementById("father")
+    var button= document.getElementById("btn")
+
+    
+    let Array= localStorage.getItem("Details");
+
+    if(Array===null){
+        Array=[];
+    }else{
+        Array= JSON.parse(Array);
+    }
+
+    button.addEventListener("click", function(){
+        var details= {
+            name: nameIn.value,
+            father: fatherIn.value,
+        }
+    
+        Array.push(details);
+
+        localStorage.setItem("Details", JSON.stringify(Array));
+    })
+
+   
+</script>

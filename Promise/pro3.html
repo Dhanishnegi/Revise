@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="number" id="Inp" placeholder="Enter Password">
+    <button id="btn">Submit</button>
+</body>
+<script>
+    let Input = document.getElementById("Inp");
+    let Button = document.getElementById("btn");
+
+
+
+
+    Button.addEventListener("click", function () {
+
+        let myPromise = new Promise((resolve, reject) => {
+
+            setTimeout(function () {
+                if (Input.value === "1234") {
+                    resolve();
+                } else {
+                    reject();
+                }
+            }, 1000);
+        })
+
+        myPromise.then(function (res) {
+            alert("Login succesfully");
+        }).catch(function (err) {
+            alert("Wrong Password");
+        })
+
+    })
+
+    
+</script>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            width: 80%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            text-align: center;
+        }
+        img{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Masai E-Commerce</h1>
+    <a href="">Home</a>
+    <a href="./proCart.html">Cart</a>
+    
+    
+    <select  id="filter">
+        <option value="">Select-Brand</option>
+        <option value="Puma">Puma</option>
+        <option value="Nike">Nike</option>
+        <option value="Reboke">Reboke</option>
+    </select>
+    
+    <div id="container"></div>
+    <script src="./pro.js"></script>
+</body>
+</html>
